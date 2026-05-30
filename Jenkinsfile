@@ -8,7 +8,7 @@ pipeline {
 
     environment {
         APP_NAME       = "express-login-ui"
-        IMAGE_NAME     = "nileshsun/express-login-ui"
+        IMAGE_NAME     = "kishanmanitiwari/express-login-ui"
         CONTAINER_PORT = "3000"
         HOST_PORT      = "3000"
     }
@@ -18,7 +18,7 @@ pipeline {
         stage('Clone Source') {
             steps {
                 git branch: 'main',
-                url: 'https://github.com/nilesh-g/express-login-ui'
+                    url: 'https://github.com/kishanmanitiwari/express-login-ui.git'
             }
         }
 
@@ -75,6 +75,7 @@ pipeline {
 
                     docker run -d \
                     --name $APP_NAME \
+                    -e PORT=$CONTAINER_PORT \
                     -p $HOST_PORT:$CONTAINER_PORT \
                     $IMAGE_NAME
                 '''
@@ -88,7 +89,7 @@ pipeline {
 
                     sleep 10
 
-                    curl -f http://localhost:$HOST_PORT/hello
+                    curl -f http://localhost:$HOST_PORT
 
                     echo "Application Deployed Successfully"
                 '''
