@@ -15,13 +15,6 @@ pipeline {
 
     stages {
 
-        stage('Clone Source') {
-            steps {
-                git branch: 'main',
-                    url: 'https://github.com/kishanmanitiwari/express-login-ui.git'
-            }
-        }
-
         stage('Cleanup Old Container & Image') {
             steps {
                 sh '''
